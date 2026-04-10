@@ -873,48 +873,60 @@
     /* Cache bar — hide on mobile */
     .cache-bar { display: none; }
 
+    /* Odds grid — full width single column */
+    .odds-grid { grid-template-columns: 1fr !important; }
+
     /* Odds cards — stack bookmaker rows better */
     .odds-row {
-      grid-template-columns: 80px 1fr;
+      grid-template-columns: 75px 1fr;
       padding: 8px 10px;
-      gap: 6px;
+      gap: 4px;
     }
-    .odd-btn { font-size: 12px; padding: 6px 2px; }
+    .odd-btn { font-size: 11px; padding: 5px 2px; min-width: 0; }
+    .odd-btn .outcome-label { font-size: 8px; }
     .bookmaker-name { font-size: 10px; }
     .match-teams { font-size: 13px; }
+    .odds-buttons { gap: 4px; }
 
     /* Odds card header */
-    .odds-card-header { padding: 10px 12px; }
+    .odds-card-header { padding: 10px 12px; flex-wrap: wrap; gap: 6px; }
 
     /* Sport filter bar — wrap nicely */
-    .sport-filter-bar { padding: 8px 10px; gap: 5px; }
+    .sport-filter-bar { padding: 8px 10px; gap: 5px; flex-wrap: wrap; }
     .sport-check { padding: 3px 8px; }
     .sport-check-label { font-size: 10px; }
     .sport-filter-label { font-size: 9px; }
+    .sport-filter-actions { margin-left: 0; }
 
     /* Section header */
     .section-header { margin-bottom: 10px; }
     .section-title { font-size: 16px; }
 
     /* Acca layout — stack vertically on mobile */
-    .acca-layout { grid-template-columns: 1fr; }
+    .acca-layout { grid-template-columns: 1fr !important; }
     .acca-slip { position: relative; top: auto; }
 
     /* Acca type tabs — scroll horizontally */
-    .acca-type-tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+    .acca-type-tabs { flex-wrap: nowrap !important; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
     .acca-type-tabs::-webkit-scrollbar { display: none; }
     .acca-type-tab { flex-shrink: 0; font-size: 10px; padding: 5px 10px; }
 
+    /* Acca event cards */
+    .acca-event-card { margin-bottom: 8px; }
+    .acca-sel-btn { min-width: 70px; padding: 6px 6px; }
+    .acca-selections { gap: 4px; flex-wrap: wrap; }
+
     /* Stats layout — stack vertically */
-    .stats-layout { grid-template-columns: 1fr; }
+    .stats-layout { grid-template-columns: 1fr !important; }
     .player-search-box { position: relative; top: auto; }
 
     /* Date filter — stack vertically */
-    .acca-date-filter { flex-direction: column; align-items: flex-start; margin-left: 0; width: 100%; }
-    .acca-date-input { width: 100% !important; }
+    .acca-date-filter { flex-direction: column; align-items: stretch; margin-left: 0; width: 100%; gap: 6px; }
+    .acca-date-input { width: 100% !important; box-sizing: border-box; }
+    .date-input-wrap { width: 100%; }
 
     /* Acca toolbar */
-    .acca-toolbar { flex-direction: column; gap: 8px; }
+    .acca-toolbar { flex-direction: column; gap: 8px; align-items: stretch; }
 
     /* Stats grid */
     .stats-grid-4 { grid-template-columns: repeat(2, 1fr); }
@@ -927,7 +939,7 @@
     .bets-table th, .bets-table td { padding: 6px 8px; }
 
     /* Modal — full screen on mobile */
-    .modal { width: 96%; max-height: 90vh; overflow-y: auto; padding: 16px; }
+    .modal { width: 96%; max-height: 90vh; overflow-y: auto; padding: 16px; margin: 0 auto; }
     .modal-scroll { max-height: 75vh; }
 
     /* Player hero */
@@ -935,7 +947,7 @@
     .player-hero-name { font-size: 18px; }
 
     /* Picks grid */
-    .picks-grid { grid-template-columns: 1fr; }
+    .picks-grid { grid-template-columns: 1fr !important; }
 
     /* AI acca banner */
     .ai-acca-banner { flex-wrap: wrap; gap: 8px; }
@@ -955,16 +967,58 @@
 
     /* Fixture date filter */
     #fixtureModePanel .sport-filter-bar { flex-wrap: wrap; }
+
+    /* Odds range filter */
+    .odds-range-filter { flex-wrap: wrap; }
   }
 
   /* Extra small phones */
   @media (max-width: 375px) {
-    .logo { font-size: 14px; }
-    .odds-row { grid-template-columns: 70px 1fr; }
-    .odd-btn { font-size: 11px; }
+    .logo { font-size: 13px; }
+    .odds-row { grid-template-columns: 65px 1fr; }
+    .odd-btn { font-size: 10px; }
     .bottom-tab { font-size: 8px; }
-    .bottom-tab .icon { font-size: 16px; }
+    .bottom-tab .icon { font-size: 15px; }
   }
+
+  /* Odds range filter */
+  .odds-range-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+  }
+
+  .odds-range-filter label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .odds-range-input {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    width: 70px;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+  }
+
+  .odds-range-input:focus { border-color: var(--accent); }
+
+  .odds-range-presets { display: flex; gap: 5px; flex-wrap: wrap; }
 
   /* ===================== ACCUMULATOR ===================== */
   .acca-layout {
@@ -2213,6 +2267,20 @@
       <div class="acca-type-tab" onclick="setAccaType('custom', this)">Custom</div>
     </div>
 
+    <!-- Odds range filter -->
+    <div class="odds-range-filter">
+      <label>Odds Range:</label>
+      <input type="number" class="odds-range-input" id="accaOddsMin" value="1.30" min="1.01" max="100" step="0.05" onchange="applyAccaFilters()"/>
+      <span style="color:var(--text3);font-family:var(--font-mono);font-size:11px">→</span>
+      <input type="number" class="odds-range-input" id="accaOddsMax" value="3.00" min="1.01" max="100" step="0.05" onchange="applyAccaFilters()"/>
+      <div class="odds-range-presets">
+        <button class="pill" onclick="setOddsPreset(1.10,1.50,this)">Favs</button>
+        <button class="pill active" onclick="setOddsPreset(1.30,3.00,this)">Mixed</button>
+        <button class="pill" onclick="setOddsPreset(2.00,5.00,this)">Value</button>
+        <button class="pill" onclick="setOddsPreset(1.01,100,this)">Any</button>
+      </div>
+    </div>
+
     <!-- Date/time filters -->
     <div class="acca-toolbar">
       <div id="accaSportFilterBar" class="sport-filter-bar" style="width:100%;margin-bottom:8px">
@@ -3104,13 +3172,20 @@ async function loadOdds(force = false) {
 function renderOdds(events) {
   const grid = document.getElementById('oddsGrid');
   if (!events || events.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><div class="icon">🏁</div><p>No upcoming events found for this sport.<br/>Try a different sport filter.</p></div>`;
+    grid.innerHTML = `<div class="empty-state"><div class="icon">🏁</div><p>No upcoming events found.<br/>Try selecting more sports or refreshing.</p></div>`;
     return;
   }
 
-  grid.innerHTML = events.slice(0, 15).map(event => {
+  grid.innerHTML = events.slice(0, 20).map(event => {
     const sport = event.sport_key || '';
-    const sportType = Object.keys(SPORT_KEYS).find(k => SPORT_KEYS[k].some(s => sport.includes(s.split('_')[0]))) || 'football';
+    // Detect sport type from sport_key
+    let sportType = 'soccer';
+    if (sport.includes('basketball')) sportType = 'basketball';
+    else if (sport.includes('tennis')) sportType = 'tennis';
+    else if (sport.includes('cricket')) sportType = 'cricket';
+    else if (sport.includes('hockey')) sportType = 'icehockey';
+    else if (sport.includes('football') || sport.includes('nfl')) sportType = 'americanfootball';
+
     const commence = new Date(event.commence_time);
     const isLive = commence < new Date();
     const timeStr = isLive ? '<span class="live-badge">LIVE</span>' : formatTime(commence);
@@ -3129,7 +3204,7 @@ function renderOdds(events) {
       });
     }
 
-    const bookmakerRows = (event.bookmakers || []).slice(0, 5).map(bk => {
+    const bookmakerRows = (event.bookmakers || []).slice(0, 6).map(bk => {
       const h2h = bk.markets?.find(m => m.key === 'h2h');
       if (!h2h) return '';
       const btns = h2h.outcomes.map(o => {
@@ -3145,6 +3220,8 @@ function renderOdds(events) {
       </div>`;
     }).join('');
 
+    const sportLabels = { soccer: '⚽', basketball: '🏀', tennis: '🎾', cricket: '🏏', icehockey: '🏒', americanfootball: '🏈' };
+
     return `<div class="odds-card">
       <div class="odds-card-header">
         <div class="match-info">
@@ -3154,7 +3231,7 @@ function renderOdds(events) {
             <span>${event.sport_title || sport}</span>
           </div>
         </div>
-        <span class="sport-badge ${sportType}">${sportType.toUpperCase()}</span>
+        <span class="sport-badge ${sportType}">${sportLabels[sportType] || '🏆'} ${sportType.toUpperCase()}</span>
       </div>
       ${bookmakerRows || '<div style="padding:12px;color:var(--text3);font-family:var(--font-mono);font-size:11px">No UK odds available</div>'}
     </div>`;
@@ -3616,21 +3693,51 @@ function clearAccaDateFilter() {
   applyAccaFilters();
 }
 
+function setOddsPreset(min, max, el) {
+  document.querySelectorAll('.odds-range-presets .pill').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('accaOddsMin').value = min;
+  document.getElementById('accaOddsMax').value = max;
+  applyAccaFilters();
+}
+
 function applyAccaFilters() {
   const fromVal = document.getElementById('accaDateFrom').value;
   const toVal = document.getElementById('accaDateTo').value;
   const from = fromVal ? new Date(fromVal) : null;
   const to = toVal ? new Date(toVal) : null;
-  const checkedKeys = getCheckedSportKeys('acca');
+  const oddsMin = parseFloat(document.getElementById('accaOddsMin')?.value || 1.01);
+  const oddsMax = parseFloat(document.getElementById('accaOddsMax')?.value || 100);
+
+  // Get checked sports — if none checked, show all
+  const checkedSports = getCheckedSports('acca');
 
   accaFiltered = accaEvents.filter(ev => {
+    // Date filter
     const t = new Date(ev.commence_time);
     if (from && t < from) return false;
     if (to && t > to) return false;
-    if (checkedKeys.length > 0) {
+
+    // Sport filter — only apply if at least one sport is checked
+    if (checkedSports.length > 0) {
       const sk = ev.sport_key || '';
-      if (!checkedKeys.some(k => sk === k || sk.startsWith(k.split('_')[0]))) return false;
+      const sportMatch = checkedSports.some(s => {
+        const keys = SPORT_CONFIGS[s]?.keys || [];
+        return keys.some(k => sk === k || sk.startsWith(k.split('_')[0]+'_') || k.startsWith(sk.split('_')[0]+'_') || sk === k.split('_')[0]);
+      });
+      if (!sportMatch) return false;
     }
+
+    // Odds range filter — check if any outcome falls within range
+    if (ev.bookmakers) {
+      const hasValidOdds = ev.bookmakers.some(bk =>
+        bk.markets?.some(mkt =>
+          mkt.key === 'h2h' && mkt.outcomes?.some(o => o.price >= oddsMin && o.price <= oddsMax)
+        )
+      );
+      if (!hasValidOdds) return false;
+    }
+
     return true;
   });
 
@@ -3967,9 +4074,18 @@ async function buildAIAcca() {
 
   if (accaEvents.length === 0) return;
 
+  // Apply current filters first
+  applyAccaFilters();
+
+  // Use filtered events — respects date and sport selections
+  const eventsToSearch = accaFiltered.length > 0 ? accaFiltered : accaEvents;
+
+  const oddsMin = parseFloat(document.getElementById('accaOddsMin')?.value || 1.15);
+  const oddsMax = parseFloat(document.getElementById('accaOddsMax')?.value || 1.90);
+
   const candidates = [];
 
-  accaEvents.forEach(event => {
+  eventsToSearch.forEach(event => {
     if (!event.bookmakers || event.bookmakers.length < 2) return;
     const commence = new Date(event.commence_time);
     if (commence < new Date()) return; // skip live/past
@@ -4007,9 +4123,7 @@ async function buildAIAcca() {
       const oddsVariance = maxPrice - minPrice;
       const consistency = 1 - (oddsVariance / avgPrice); // higher = more consistent
 
-      if (price >= 1.15 && price <= 1.90 && impliedProb >= 0.52) {
-        // Only pick clear favourites — implied prob over 52% means bookmakers
-        // think this outcome is more likely than not to happen
+      if (price >= oddsMin && price <= oddsMax) {
         const score = impliedProb * (0.7 + consistency * 0.3);
         candidates.push({
           eventId: event.id,
